@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffcf36">
+  <meta name="description" content="Uma nova aventura em quadrinhos todos os dias!">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>Gibi Diário — Volume 1</title>
+</head>
+<body>
+  <header class="app-header">
+    <img class="brand" src="Logo.jpg" alt="Quadrinhos Diários — Volume 1">
+    <div class="header-caption">Uma nova aventura todos os dias!</div>
+  </header>
+
+    <section class="offline-card">
+      <div class="offline-heading">
+        <span class="offline-dot" id="connection-dot"></span>
+        <strong id="offline-status">Verificando conexão…</strong>
+      </div>
+      <p>Para guardar os 50 quadrinhos no aparelho e ler sem internet, prepare o conteúdo offline. O download inicial é grande e usa o espaço livre do celular.</p>
+      <button id="offline-download" class="offline-button" type="button">Preparar quadrinhos para uso offline</button>
+      <div class="progress-wrap" id="progress-wrap" hidden>
+        <progress id="download-progress" max="100" value="0"></progress>
+        <span id="progress-label">0%</span>
+      </div>
+      <p class="small-note" id="offline-note">As páginas abertas também são guardadas automaticamente quando há conexão.</p>
+    </section>
+
+  <main>
+    <section class="day-card" aria-live="polite">
+      <span class="eyebrow">LEITURA DO DIA</span>
+      <h1 id="comic-title">Quadrinho do dia</h1>
+      <p id="comic-date"></p>
+      <p id="comic-position" class="position"></p>
+    </section>
+
+    <nav class="comic-nav" aria-label="Navegação diária">
+      <button id="previous" class="nav-button secondary" type="button">← Até 2 dias antes</button>
+      <button id="today" class="nav-button today" type="button">Quadrinho de hoje</button>
+      <button id="next" class="nav-button primary" type="button">Até 2 dias depois →</button>
+    </nav>
+
+
+
+    <section id="comic-pages" class="comic-pages" aria-label="Páginas do quadrinho" hidden></section>
+    <p class="end-note" id="end-note" hidden>Fim do quadrinho de hoje. Volte amanhã para uma nova aventura! ✨</p>
+  </main>
+
+  <footer class="app-footer">
+    <button id="credits-button" class="footer-button" type="button">ⓘ Créditos</button>
+    <a class="footer-button site-button" href="https://sites.google.com/view/grupo-deus-e-maior/p%C3%A1gina-inicial?authuser=0&amp;pli=1" target="_blank" rel="noopener noreferrer">↗ Site</a>
+  </footer>
+
+  <dialog id="credits-dialog" class="credits-dialog">
+    <div class="dialog-content">
+      <button id="close-credits" class="close-button" type="button" aria-label="Fechar">×</button>
+      <h2>Créditos</h2>
+      <p>Produzido por Ricardo Augusto de Oliveira e Rosilene Maria da Silva Oliveira, criadores do Google Site da Renova-me Deus Meu.</p>
+      <p class="credit-brand">Gibi Diário — Volume 1</p>
+    </div>
+  </dialog>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
