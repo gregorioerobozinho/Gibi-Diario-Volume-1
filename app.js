@@ -2,7 +2,8 @@ const START_DATE = "2026-11-20"; // Data-base inicial do Volume 1; ajuste se a p
 const TOTAL_COMICS = 50;
 const MAX_DAYS_AROUND_TODAY = 2;
 const SITE_URL = "https://sites.google.com/view/grupo-deus-e-maior/p%C3%A1gina-inicial?authuser=0&pli=1";
-const CACHE_NAME = "gibi-diario-volume-1-content-v1";
+const CACHE_NAME = "gibi-diario-volume-1-content-v2-free-choice";
+const OFFER_EMAIL = "grupodeusemaior@gmail.com";
 
 const $ = (id) => document.getElementById(id);
 let manifest = {};
@@ -32,8 +33,13 @@ function imagePath(path) {
   return encodeURI(path).replaceAll("#","%23");
 }
 function updateNav() {
-  $("previous").disabled = selectedIndex <= Math.max(0, todayIndex - MAX_DAYS_AROUND_TODAY);
-  $("next").disabled = selectedIndex >= Math.min(TOTAL_COMICS - 1, todayIndex + MAX_DAYS_AROUND_TODAY);
+  const atPreviousLimit = selectedIndex <= Math.max(0, todayIndex - MAX_DAYS_AROUND_TODAY);
+  const atNextLimit = selectedIndex >= Math.min(TOTAL_COMICS - 1, todayIndex + MAX_DAYS_AROUND_TODAY);
+  // Os botões permanecem acionáveis no limite para apresentar a oferta, em vez de parecerem quebrados.
+  $("previous").disabled = false;
+  $("next").disabled = false;
+  $("previous").textContent = atPreviousLimit ? "← Ver coleção completa" : "← Até 2 dias antes";
+  $("next").textContent = atNextLimit ? "Coleção completa →" : "Até 2 dias depois →";
   $("today").textContent = selectedIndex === todayIndex
     ? (comicShown ? "✓ Quadrinho de hoje" : "Ver quadrinho de hoje")
     : "Voltar ao quadrinho de hoje";
@@ -81,9 +87,27 @@ function setSelected(index, reveal = true) {
   selectedIndex = Math.max(min, Math.min(max, index));
   renderComic(reveal);
 }
-$("previous").addEventListener("click", () => setSelected(selectedIndex - 1));
-$("next").addEventListener("click", () => setSelected(selectedIndex + 1));
+function showOffer() {
+  const dialog = $("offer-dialog");
+  if (dialog && typeof dialog.showModal === "function") dialog.showModal();
+  else window.location.href = `mailto:${OFFER_EMAIL}?subject=${encodeURIComponent("Gibi Diário completo em PDF")}`;
+}
+$("previous").addEventListener("click", () => {
+  const min = Math.max(0, todayIndex - MAX_DAYS_AROUND_TODAY);
+  if (selectedIndex <= min) showOffer();
+  else setSelected(selectedIndex - 1);
+});
+$("next").addEventListener("click", () => {
+  const max = Math.min(TOTAL_COMICS - 1, todayIndex + MAX_DAYS_AROUND_TODAY);
+  if (selectedIndex >= max) showOffer();
+  else setSelected(selectedIndex + 1);
+});
+$("close-offer").addEventListener("click", () => $("offer-dialog").close());
+$("offer-dialog").addEventListener("click", (event) => {
+  if (event.target === $("offer-dialog")) $("offer-dialog").close();
+});
 $("today").addEventListener("click", () => setSelected(todayIndex, true));
+$("open-free").addEventListener("click", () => { setSelected(todayIndex, true); $("comic-pages").scrollIntoView({behavior:"smooth",block:"start"}); });
 
 $("credits-button").addEventListener("click", () => $("credits-dialog").showModal());
 $("close-credits").addEventListener("click", () => $("credits-dialog").close());

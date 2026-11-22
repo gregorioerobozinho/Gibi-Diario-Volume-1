@@ -1,5 +1,5 @@
-const SHELL_CACHE = "gibi-diario-shell-v2";
-const CONTENT_CACHE = "gibi-diario-volume-1-content-v1";
+const SHELL_CACHE = "gibi-diario-shell-v6-senha-individual-volume-1";
+const CONTENT_CACHE = "gibi-diario-volume-1-content-v3-capas-especiais";
 const SHELL_FILES = ["./","index.html","styles.css","app.js","comics.json","manifest.webmanifest","Logo.jpg","icon-192.png","icon-512.png"];
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL_FILES)).then(() => self.skipWaiting()));

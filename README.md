@@ -37,3 +37,23 @@ O app shell fica disponível offline depois da primeira abertura com conexão. A
 ## Observações
 - O app não gera APK. A instalação é feita pelo navegador, como PWA.
 - O GitHub Pages publica arquivos estáticos; o link funciona como site e instalação PWA.
+
+
+## Oferta da coleção completa (versão de teste)
+O aplicativo apresenta a oferta do Gibi Diário completo por **R$ 5,00**, em PDF protegido por senha, para leitura no computador ou celular. O contato é `grupodeusemaior@gmail.com`. A oferta também aparece quando o leitor tenta ultrapassar o limite de navegação de duas edições antes/depois da edição do dia.
+
+## Imagens otimizadas
+Para facilitar o teste no VS Code e reduzir o tamanho do projeto, as imagens das 50 histórias foram convertidas para JPEG de alta qualidade. O índice `comics.json` aponta para os arquivos `.jpg`; a organização e a sequência das páginas foram preservadas.
+\n\n## Acesso gratuito e coleção de apoio\n\nO aplicativo oferece leitura gratuita diária. A coleção PDF por R$ 5,00 é opcional e representa apoio ao projeto; não é necessário comprar para ler as histórias no app. Mensagem central: “De graça recebestes, de graça dai” (Mateus 10:8).\n
+
+### Mensagem principal do aplicativo
+- A leitura diária no aplicativo é inteiramente gratuita; não exige compra.
+- O PDF com as 50 histórias é uma opção por R$ 5,00 como forma de apoiar o projeto.
+- Contato: grupodeusemaior@gmail.com
+- “De graça recebestes, de graça dai.” (Mateus 10:8)
+
+### Teste no VS Code
+1. Extraia este ZIP para uma pasta.
+2. Abra a pasta no VS Code.
+3. Inicie o Live Server em `index.html` (não abra pelo protocolo `file://`).
+4. Confira o cartão de leitura gratuita e o cartão de apoio opcional.
